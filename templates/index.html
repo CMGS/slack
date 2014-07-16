@@ -3,33 +3,44 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="static/css/bootstrap.min.css">
 <link rel="stylesheet" href="static/css/bootstrap-theme.min.css">
-<script src="static/js/jquery-2.1.1.js"></script>
-<script src="static/js/bootstrap.min.js"></script>
-<body>
+<link rel="stylesheet" href="static/css/site.css">
+<title>
+    Slack
+</title>
+<body onload="connect();">
 <nav class="navbar navbar-static-top navbar-inverse" role="navigation">
-  <div class="container-fluid">
+  <div class="container">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
-      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
       <a class="navbar-brand" href="#">Slack</a>
     </div>
 
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li class="active"><a href="#">Index</a></li>
-        <li><a href="#">Link</a></li>
+        <li class="active"><a href="/">Home</a></li>
       </ul>
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
 <div class="container">
-    <p class="lead">Hello World</p>
+    <div class="row">
+        <ul class="nav nav-pills">
+          {% for group in groups %}
+          <li id="channel{{ group['id'] }}"><a href="#{{ group['id'] }}">{{ group['name'] }}</a></li>
+          {% endfor %}
+          <li id="channel0"><a href="#0">{{ g.current_user.uname }}</a></li>
+        </ul>
+    </div>
+    <div class="row">
+        <ol id="log">
+        </ol>
+    </div>
+    <form class="row form-inline" onsubmit="return send();" role="form">
+        <input type="text" style="width:90%" class="form-control col-md-1" id="message" placeholder="message">
+        <button type="submit" class="col-md-1 btn btn-default">submit</button>
+    </form>
 </div>
 </body>
+<script src="static/js/site.js"></script>
 </html>

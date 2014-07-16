@@ -26,3 +26,9 @@ SESSION_SALT = '0xd9943!@$%slack!#$%^'
 COOKIE_MAX_AGE = 2592000
 COOKIE_DOMAIN = '127.0.0.1'
 
+GITLAB_HOST = 'http://git.hunantv.com'
+
+ORGANIZATION = 1
+IRC_ORGANIZATION_USERS = "irc:%s:users" % ORGANIZATION
+IRC_USER_CHANNELS_FORMAT = "irc:{org}:user_%s:channels".format(org=ORGANIZATION)
+
